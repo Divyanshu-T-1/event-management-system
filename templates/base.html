@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Event Management{% endblock %}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Top Bar */
+        .topbar {
+            background: linear-gradient(90deg, #4e54c8, #8f94fb);
+            color: white;
+            padding: 14px 22px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-weight: bold;
+        }
+
+        .topbar a:hover {
+            opacity: 0.85;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 10px;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Event Card */
+        .event {
+            background: white;
+            padding: 22px;
+            margin-bottom: 22px;
+            border-radius: 8px;
+            border-left: 6px solid #4e54c8;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .event:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .event h2 {
+            margin-top: 0;
+            color: #4e54c8;
+        }
+
+        .event p {
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .meta {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Buttons */
+        button {
+            background: #4e54c8;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #3b40a4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <span>🎉 Event Management System</span>
+    <span>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+</span>
+
+</div>
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

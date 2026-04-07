@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<h1 style="text-align:center;">Create Account</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color:red; text-align:center;">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
+
+<form method="POST"
+      style="
+        max-width:400px;
+        margin:30px auto;
+        padding:20px;
+        background:white;
+        border:1px solid #ddd;
+        border-radius:6px;
+      ">
+    {% csrf_token %}
+
+    <div style="margin-bottom:15px;">
+        <label><strong>Username</strong></label><br>
+        <input type="text" name="username" placeholder="Enter username" required
+               style="width:100%; padding:10px; margin-top:5px;">
+    </div>
+
+    <div style="margin-bottom:15px;">
+        <label><strong>Email</strong></label><br>
+        <input type="email" name="email" placeholder="Enter email address" required
+               style="width:100%; padding:10px; margin-top:5px;">
+    </div>
+
+    <div style="margin-bottom:15px;">
+        <label><strong>Password</strong></label><br>
+        <input type="password" name="password" placeholder="Enter password" required
+               style="width:100%; padding:10px; margin-top:5px;">
+    </div>
+
+    <button type="submit"
+            style="
+                width:100%;
+                padding:10px;
+                background:#222;
+                color:white;
+                border:none;
+                cursor:pointer;
+            ">
+        Signup
+    </button>
+</form>
+
+<p style="text-align:center; margin-top:15px;">
+    Already have an account?
+    <a href="{% url 'login' %}">Login</a>
+</p>
+{% endblock %}
